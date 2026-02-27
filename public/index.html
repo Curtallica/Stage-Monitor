@@ -5,6 +5,21 @@
 </head>
 <body>
   <h1>Boria Performance Portal v0.0.1</h1>
-  <p>If you can see this, deployment works.</p>
+
+  <pre id="output">Loading...</pre>
+
+  <script>
+    fetch("/data/status.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("output").textContent =
+          JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById("output").textContent =
+          "Error loading data.";
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
